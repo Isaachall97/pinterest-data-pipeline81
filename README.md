@@ -65,6 +65,11 @@ Ensure that all software installations and configurations are done correctly to 
 - The REST proxy can now be deployed on the EC2 client machine.
 
 3. **Send data to the API**
-- The file `user-posting-emulation.py` was originally provided as a starting point- it contained the login credentials for an RDS database. This contains 3 tables with data resembling data received by the pinterest API when a `POST` request is made by a user uploading data to pinterest. 
-![original python script]
+- The file `user-posting-emulation.py` was originally provided as a starting point- it contained the login credentials for an RDS database. This contains 3 tables with data resembling data received by the pinterest API when a `POST` request is made by a user uploading data to pinterest. A screenshot of the code provided is below:
+  
+![original user_posting_emulation](https://github.com/Isaachall97/pinterest-data-pipeline81/issues/1#issue-2263338128)
 
+- This file was then modified in order to send data to the Kafka topics previously initialised (`user-id.pin`, `user-id.geo`, `user-id.user`) using the API invoke URL.
+- Data from the three tables needs to be stored in their corresponding Kafka topic
+- A screenshot of the modified code is below:
+  
