@@ -55,5 +55,16 @@ Ensure that all software installations and configurations are done correctly to 
 ### Batch Processiong- Configure an API in API gateway
 
 1. **Build a Kafka REST proxy integration for the API**
-- 
+- Resource must be created that allows a PROXY integreation for the API
+- For the previously created resource, an HTTP `ANY` method is created. The `Endpoint URL` must be the `PublicDNS` from the EC2 machine in previous steps.
+- The API is deployed. `Invoke URL` is noted.
+
+2. **Set up KAFKA REST proxy on the EC2 client**
+- Confluent package must be installed for the Kafka REST proxy on the EC2 client machine.
+- `kafka-rest.properties` file must be modified to allow the REST proxy to perform IAM authentication to the MSK cluster.
+- The REST proxy can now be deployed on the EC2 client machine.
+
+3. **Send data to the API**
+- The file `user-posting-emulation.py` was originally provided as a starting point- it contained the login credentials for an RDS database. This contains 3 tables with data resembling data received by the pinterest API when a `POST` request is made by a user uploading data to pinterest. 
+![original python script]
 
