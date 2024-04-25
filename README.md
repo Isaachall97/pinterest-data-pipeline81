@@ -74,4 +74,7 @@ Ensure that all software installations and configurations are done correctly to 
 - A screenshot of the modified code is below:
 
 ![user_posting_emulation_mod](https://private-user-images.githubusercontent.com/55752358/325590600-a0903c64-d6e8-47b4-9a89-d507be367ed5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQwNDU0NzcsIm5iZiI6MTcxNDA0NTE3NywicGF0aCI6Ii81NTc1MjM1OC8zMjU1OTA2MDAtYTA5MDNjNjQtZDZlOC00N2I0LTlhODktZDUwN2JlMzY3ZWQ1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI1VDExMzkzN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWEyYzk1ZmE4YWJlMDY1ZTlhYzczOWZkY2U5MGVhMDE2Mzk0NzA3NGY5N2FmZThjMzg2NmQ4YjY5Njc3NTFjYjgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.0CVwNawq47Q-Gd1lESkzkCiHtWHOmXlTuuRwgDUNvDM)
+
+- When this script is run, data is sent to the MSK cluster. This can be checked by running a Kafka consumer for each topic. Messages will be consumed while the consumer is running.
+- The data is ultimately being stored in the S3 bucket as per the topic names. 
   
