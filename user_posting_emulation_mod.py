@@ -27,7 +27,7 @@ class AWSDBConnector:
 new_connector = AWSDBConnector()
 
 def post_data_to_api(payload, invoke_url):
-    response = requests.request("POST", invoke_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
+    response = requests.request("POST", invoke_url, data=payload, headers={"Content-Type": "application/vnd.kafka.json.v2+json"})
     if response.status_code != 200:
         print(f"Error posting to {invoke_url}, Status Code: {response.status_code}, Response: {response.text}")
     else:
@@ -48,14 +48,28 @@ def run_infinite_post_data_loop():
             user_result = connection.execute(user_string, {'row': random_row}).fetchone()
 
             if pin_result and geo_result and user_result:
-                pin_dict = {key: value for key, value in pin_result.items()}
-                geo_dict = {key: value for key, value in geo_result.items()}
-                user_dict = {key: value for key, value in user_result.items()}
+                pin_res = json.dumps({
+                    "records" : [{
+                        "value" : pin_result
+                    }
+                    ]
+                }
+                , default=str)
+                geo_res = json.dumps({
+                    "records" : [{
+                        "value" : geo_result
+                    }]
+                    }
+                , default=str)
+                user_res = json.dumps({
+                    "records" : [{
+                        "value" : user_result
+                    }]
+                }, default=str)
                     
-                
-                post_data_to_api(pin_dict, "https://lir2ur9ide.execute-api.us-east-1.amazonaws.com/0affee876ba9-stage/topics/0affee876ba9.pin")
-                post_data_to_api(geo_dict, "https://lir2ur9ide.execute-api.us-east-1.amazonaws.com/0affee876ba9-stage/topics/0affee876ba9.geo")
-                post_data_to_api(user_dict, "https://lir2ur9ide.execute-api.us-east-1.amazonaws.com/0affee876ba9-stage/topics/0affee876ba9.user")
+                post_data_to_api(pin_res, "https://lir2ur9ide.execute-api.us-east-1.amazonaws.com/0affee876ba9-stage/topics/0affee876ba9.pin")
+                post_data_to_api(geo_res, "https://lir2ur9ide.execute-api.us-east-1.amazonaws.com/0affee876ba9-stage/topics/0affee876ba9.geo")
+                post_data_to_api(user_res, "https://lir2ur9ide.execute-api.us-east-1.amazonaws.com/0affee876ba9-stage/topics/0affee876ba9.user")
                 
            
 if __name__ == "__main__":
