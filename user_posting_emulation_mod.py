@@ -40,12 +40,23 @@ def run_infinite_post_data_loop():
         engine = new_connector.create_db_connector()
 
         with engine.connect() as connection:
-            pin_string = text("SELECT * FROM pinterest_data LIMIT :row, 1")
-            pin_result = connection.execute(pin_string, {'row': random_row}).fetchone()
-            geo_string = text("SELECT * FROM geolocation_data LIMIT :row, 1")
-            geo_result = connection.execute(geo_string, {'row': random_row}).fetchone()
-            user_string = text("SELECT * FROM user_data LIMIT :row, 1")
-            user_result = connection.execute(user_string, {'row': random_row}).fetchone()
+            pin_string = text(f"SELECT * FROM pinterest_data LIMIT {random_row}, 1")
+            pin_selected_row = connection.execute(pin_string)
+            
+            for row in pin_selected_row: 
+                pin_result = dict(row._mapping)
+
+            geo_string = text(f"SELECT * FROM geolocation_data LIMIT {random_row}, 1")
+            geo_selected_row = connection.execute(geo_string)
+
+            for row in geo_selected_row: 
+                geo_result = dict(row._mapping)
+            
+            user_string = text(f"SELECT * FROM user_data LIMIT {random_row}, 1")
+            user_selected_row = connection.execute(user_string)
+
+            for row in user_selected_row: 
+                user_result = dict(row._mapping)
 
             if pin_result and geo_result and user_result:
                 pin_res = json.dumps({
