@@ -118,4 +118,49 @@ display(user_df)
 
 # COMMAND ----------
 
+# File location and type
+# Asterisk(*) indicates reading all the content of the specified file that have .json extension
+file_location_geo = "/mnt/user-0affee876ba9/topics/0affee876ba9.geo/partition=0/*.json" 
+file_type = "json"
+# Ask Spark to infer the schema
+infer_schema = "true"
+# Read in JSONs from mounted S3 bucket
+df_geo = spark.read.format(file_type) \
+.option("inferSchema", infer_schema) \
+.load(file_location_geo)
+# Display Spark dataframe to check its content
+display(df_geo)
+
+# COMMAND ----------
+
+# File location and type
+# Asterisk(*) indicates reading all the content of the specified file that have .json extension
+file_location_pin = "/mnt/user-0affee876ba9/topics/0affee876ba9.pin/partition=0/*.json"
+file_type = "json"
+# Ask Spark to infer the schema
+infer_schema = "true"
+# Read in JSONs from mounted S3 bucket
+df_pin = spark.read.format(file_type) \
+.option("inferSchema", infer_schema) \
+.load(file_location_pin)
+# Display Spark dataframe to check its content
+display(df_pin)
+
+# COMMAND ----------
+
+# File location and type
+# Asterisk(*) indicates reading all the content of the specified file that have .json extension
+file_location_user = "/mnt/user-0affee876ba9/topics/0affee876ba9.user/partition=0/*.json"
+file_type = "json"
+# Ask Spark to infer the schema
+infer_schema = "true"
+# Read in JSONs from mounted S3 bucket
+df_user = spark.read.format(file_type) \
+.option("inferSchema", infer_schema) \
+.load(file_location_user)
+# Display Spark dataframe to check its content
+display(df_user)
+
+# COMMAND ----------
+
 dbutils.fs.unmount("/mnt/user-0affee876ba9")
