@@ -88,6 +88,13 @@ Once the topics have been stored in the AWS S3 bucket, the data must be read int
 - In order to clean and query the batch data, the data from the S3 bucket must be read into Databricks. To do this, the S3 bucket must be mounted to the Databricks account.
 - Details of this code can be found here: [`mount_s3_to_databricks.py`](mount_s3_to_databricks.py)
 
+### Batch processing- Spark on Databricks
+
+- After data has been mounted, it is then loaded into spark dataframes, where it can be cleaned
+- Various cleaning operations are performed dependent on the specific needs of the data.
+- After cleaning has been performed, queries are done on the transformed data in order to verify the quality.
+- All cleaning and query operations can also be found in [`mount_s3_to_databricks.py`](mount_s3_to_databricks.py)
+
 
 
   
