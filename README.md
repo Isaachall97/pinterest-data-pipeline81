@@ -71,7 +71,7 @@ Ensure that all software installations and configurations are done correctly to 
 
 - This file was then modified in order to send data to the Kafka topics previously initialised (`user-id.pin`, `user-id.geo`, `user-id.user`) using the API invoke URL.
 - Data from the three tables needs to be stored in their corresponding Kafka topic
-- A screenshot of the modified code is below:
+- A screenshot of the modified code is below- the full script can be found here- [`user_posting_emulation_mod.py`](user_posting_emulation_mod.py):
 
 ![user_posting_emulation_mod](https://private-user-images.githubusercontent.com/55752358/325590600-a0903c64-d6e8-47b4-9a89-d507be367ed5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTUwOTQ4MTksIm5iZiI6MTcxNTA5NDUxOSwicGF0aCI6Ii81NTc1MjM1OC8zMjU1OTA2MDAtYTA5MDNjNjQtZDZlOC00N2I0LTlhODktZDUwN2JlMzY3ZWQ1LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTA3VDE1MDgzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQ4Mzc2MDY0OGViODE4NzJiYTNmYTQ4M2VlNmIzMDZlOTViODMxNGFiYmM3NDY2NTgzMGE3YjI2ZDEyZWFmNjkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.YlFBwPivgJIR3URhBJclD4peCichv5WIqlN3U01sHaw)
 
