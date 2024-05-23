@@ -79,5 +79,14 @@ Ensure that all software installations and configurations are done correctly to 
 - The data is ultimately being stored in the S3 bucket as per the topic names. A screen capture can be seen below of what this should look like:
   ![S3_bucket_screencapture](https://private-user-images.githubusercontent.com/55752358/325594024-3942afa4-8714-4548-81a2-56cc5352f9fe.gif?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQwNDYyNTYsIm5iZiI6MTcxNDA0NTk1NiwicGF0aCI6Ii81NTc1MjM1OC8zMjU1OTQwMjQtMzk0MmFmYTQtODcxNC00NTQ4LTgxYTItNTZjYzUzNTJmOWZlLmdpZj9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI1VDExNTIzNlomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWNmODRmZDEzM2NjNzMxY2RhNDhjNGE0ZjFhZGZlMjIwZGI4ZWM0NWZmNjkwY2EwOTE1NzNlMGQ3Y2IwYjRlMjUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.R4t2x5PQZkZ-tciHLocmWkq-0qa8VP6TH3BKEGwYVwQ)
 
+## Batch processing- Databricks
+
+Once the topics have been stored in the AWS S3 bucket, the data must be read into Databricks where it can be transformed and queried.
+
+### Mount S3 bucket to Databricks
+
+- In order to clean and query the batch data, the data from the S3 bucket must be read into Databricks. To do this, the S3 bucket must be mounted to the Databricks account.
+- Details of this code can be 
+
 
   
