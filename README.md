@@ -86,7 +86,8 @@ Once the topics have been stored in the AWS S3 bucket, the data must be read int
 ### Mount S3 bucket to Databricks
 
 - In order to clean and query the batch data, the data from the S3 bucket must be read into Databricks. To do this, the S3 bucket must be mounted to the Databricks account.
-- Details of this code can be 
+- Details of this code can be found here: [`mount_s3_to_databricks.py`](mount_s3_to_databricks.py)
+
 
 
   
