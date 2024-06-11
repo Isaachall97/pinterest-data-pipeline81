@@ -105,6 +105,7 @@ Once the topics have been stored in the AWS S3 bucket, the data must be read int
 - Once this is created, it must be uploaded to the S3 bucket linked to the MWAA environment.
 - The DAG 0affee876ba9_dag.py was scheduled to run daily, so captures clusters of data on a daily basis.
 - Once uploaded to MWAA, you should be able to follow the link to the Airflow UI and see the code along with other key metrics on there. The DAG can also be manually triggered to check that it runs correctly.
+  ![Airflow_UI_Screenshot](https://github.com/Isaachall97/pinterest-data-pipeline81/issues/8#issue-2347185353)
   
 
 
