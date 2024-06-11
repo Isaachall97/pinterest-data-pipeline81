@@ -96,5 +96,17 @@ Once the topics have been stored in the AWS S3 bucket, the data must be read int
 - All cleaning and query operations can also be found in [`mount_s3_to_databricks.py`](mount_s3_to_databricks.py)
 
 
+### Batch processing- AWS MWAA
+
+- The script created using Spark on Databricks [`mount_s3_to_databricks.py`](mount_s3_to_databricks.py) can currently only be run manually. However, it can be automated using AWS MWAA.
+- AWS MWAA (Managed Workflows for Apache Airflow) is a managed service that was designed to helpintegrate Apache Airflow straight in the cloud, with minimal setup and the quickest time to execution. Apache Airflow is a tool used to schedule and monitor different sequences of processes and tasks, referred to as workflows.
+- For this project, an environment had already been created which was linked with an accessible S3 bucket to store data in. If this is not the case, an API token will need to be created in Databricks to connect your AWS account.
+- The DAG [`0affee876ba9_dag.py`](0affee876ba9_dag.py) was created. This specifies parameters such as the filepath to the notebook which is to be run, the frequency of the run, the number of retries should the DAG fail and the authentication credentials to access the notebook.
+- Once this is created, it must be uploaded to the S3 bucket linked to the MWAA environment.
+- The DAG 0affee876ba9_dag.py was scheduled to run daily, so captures clusters of data on a daily basis.
+- Once uploaded to MWAA, you should be able to follow the link to the Airflow UI and see the code along with other key metrics on there. The DAG can also be manually triggered to check that it runs correctly.
+  
+
+
 
   
