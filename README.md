@@ -106,6 +106,30 @@ Once the topics have been stored in the AWS S3 bucket, the data must be read int
 - The DAG 0affee876ba9_dag.py was scheduled to run daily, so captures clusters of data on a daily basis.
 - Once uploaded to MWAA, you should be able to follow the link to the Airflow UI and see the code along with other key metrics on there. The DAG can also be manually triggered to check that it runs correctly.
   ![Airflow_UI_Screenshot](https://private-user-images.githubusercontent.com/55752358/338727886-844183b7-9257-48d8-a85b-ed5ff6470f69.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTgxMzYxMDUsIm5iZiI6MTcxODEzNTgwNSwicGF0aCI6Ii81NTc1MjM1OC8zMzg3Mjc4ODYtODQ0MTgzYjctOTI1Ny00OGQ4LWE4NWItZWQ1ZmY2NDcwZjY5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA2MTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNjExVDE5NTY0NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTZiNGM5NmZlZjc5OGY4MmE5NWVjYTliNTc1ZjkzYmIwOTk4ZDMzYzkyOTMzMDU5YzkyMWFjYzgwNTZiZjU0NzEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.l44Wf_dIq6cy4HLDDL7t5S9l5ucdSgjlxchQmgzv724)
+
+### Stream processing- AWS Kinesis
+
+- The previous batch processing method was sufficient for data which does not need to be ingested in real time. However, sometimes it is useful to stream data. We can use AWS Kinesis for this purpose.
+- Firstly, on the Kinesis console, three data streams must be made- one for each data type- the posts data, the geolocation data and the user data.
+- Next, an API must be configured with Kinesis proxy integration. We can use the previously created REST API and modify it so that it can invoke Kinesis actions.
+- Make sure that your account has the necessary permissions to do this.
+- The API should be configured so that it can 1) List streams in Kinesis, 2) Create, Describe and Delete streams in Kinesis, and 3) Add records to stream in Kinesis
+- Once this has been done, data can be sent to the Kinesis streams. The script 'user_posting_emulation.py' can be modified so that requests are sent to the Kinesis-integrated API which allow records to be added one at a time to the streams previously created by topic. The code needed for this can be observed in [`user_posting_emulation_streaming.py`](user_posting_emulation_streaming.py)
+- Ensure that the database credentials are encoded in a seperate file.
+- If the script is successful in connecting and sending data to the Kinesis stream, the data should be able to be viewed using the 'Data Viewer' tab inside the Kinesis console. It should look something like this:
+  ![Kinesis_Stream_Screenshot](https://private-user-images.githubusercontent.com/55752358/338732716-26809978-2644-4346-be83-97cbfe4c1fef.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTgxMzcxNjQsIm5iZiI6MTcxODEzNjg2NCwicGF0aCI6Ii81NTc1MjM1OC8zMzg3MzI3MTYtMjY4MDk5NzgtMjY0NC00MzQ2LWJlODMtOTdjYmZlNGMxZmVmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA2MTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNjExVDIwMTQyNFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTZlZTc0NzdlNjEwOTg5MTU0NTUzZDQyMTM5OGI2M2RiNDc5ODkzNGVmMTIxN2FiMzZmMDE0ZThmMDJmNTFjZGUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.8KD8TW0EIjqHO3P6h60kllqXADGZIbqIhVU2Y9JecWM)
+
+
+### Reading data from Kinesis to Databricks
+
+- Once the data has been set to stream using Kinesis, we can link it to Databricks using the access key and secret access key in the Delta Table created for the batch data processing.
+- The code used to link the Kinesis Stream to Databricks can be found in [`pinterest_data_kinesis_stream.py`](pinterest_data_kinesis_stream.py).
+- The schema is specified so that data can be read into a Spark dataframe with data in the correct columns.
+- The JSON data stored in Kinesis is then parsed into the defined schema, with each key as a column.
+- The data can then be transformed and cleaned like a normal Spark dataframe.
+- Finally, this can be written and saved to a Delta Table. 
+
+
   
 
 
