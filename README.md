@@ -107,7 +107,9 @@ Once the topics have been stored in the AWS S3 bucket, the data must be read int
 - Once uploaded to MWAA, you should be able to follow the link to the Airflow UI and see the code along with other key metrics on there. The DAG can also be manually triggered to check that it runs correctly.
   ![Airflow_UI_Screenshot](https://private-user-images.githubusercontent.com/55752358/338727886-844183b7-9257-48d8-a85b-ed5ff6470f69.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTgxMzYxMDUsIm5iZiI6MTcxODEzNTgwNSwicGF0aCI6Ii81NTc1MjM1OC8zMzg3Mjc4ODYtODQ0MTgzYjctOTI1Ny00OGQ4LWE4NWItZWQ1ZmY2NDcwZjY5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA2MTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNjExVDE5NTY0NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTZiNGM5NmZlZjc5OGY4MmE5NWVjYTliNTc1ZjkzYmIwOTk4ZDMzYzkyOTMzMDU5YzkyMWFjYzgwNTZiZjU0NzEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.l44Wf_dIq6cy4HLDDL7t5S9l5ucdSgjlxchQmgzv724)
 
-### Stream processing- AWS Kinesis
+## Stream processing- Databricks and Kinesis 
+
+### AWS Kinesis
 
 - The previous batch processing method was sufficient for data which does not need to be ingested in real time. However, sometimes it is useful to stream data. We can use AWS Kinesis for this purpose.
 - Firstly, on the Kinesis console, three data streams must be made- one for each data type- the posts data, the geolocation data and the user data.
