@@ -67,7 +67,7 @@ Ensure that all software installations and configurations are done correctly to 
 3. **Send data to the API**
 - The file [`user-posting-emulation.py`](user_posting_emulation.py) was originally provided as a starting point- it contained the login credentials for an RDS database. This contains 3 tables with data resembling data received by the pinterest API when a `POST` request is made by a user uploading data to pinterest. A screenshot of the code provided is below:
   
-![original user_posting_emulation](https://private-user-images.githubusercontent.com/55752358/325586012-d0f9b9e0-a109-41a2-8829-d2efb70e069a.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTQwNDQ4MDEsIm5iZiI6MTcxNDA0NDUwMSwicGF0aCI6Ii81NTc1MjM1OC8zMjU1ODYwMTItZDBmOWI5ZTAtYTEwOS00MWEyLTg4MjktZDJlZmI3MGUwNjlhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA0MjUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNDI1VDExMjgyMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTU1NmQ1M2IzNGU0ZDg0MTA2ZWVkNGE3OWQ4ZGYxY2NiYzVlYzEwNGI1MWRiNzA0NDdiYzliNWM0OTMxYTBmMmYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.53MT-eDSAq-96wUFjv3WHFgUFXVcICCivaNNlRpyMUw)
+![original user_posting_emulation](https://github.com/Isaachall97/pinterest-data-pipeline81/issues/1#issue-2263338128)
 
 - This file was then modified in order to send data to the Kafka topics previously initialised (`user-id.pin`, `user-id.geo`, `user-id.user`) using the API invoke URL.
 - Data from the three tables needs to be stored in their corresponding Kafka topic
